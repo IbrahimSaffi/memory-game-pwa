@@ -87,14 +87,19 @@ svg {
 .game-status{
     font-weight: bolder;
     text-transform: capitalize;
-    margin-top: 40%;
+    margin-top: 50%;
 }
 @media only screen and (max-width:480px) {
+    body{
+   padding-left: 5vw;
+   padding-right: 5vw;
+    }
     .card{
-        margin-left: 2%;
-        margin-right: 2%;;
+        margin-left: 0;
+        margin-right: 0;;
     }
     .status {
         font-size: small;
     }
+
 }

@@ -34,6 +34,7 @@ function Game() {
         setScore(tempScore)
         if(tempScoreArr.length===16){
           setGameStatus("Finished")
+          clearInterval(intervalId)
         }
       }
       setClickable(true)
@@ -60,6 +61,7 @@ function Game() {
   function handleGameStatus(){
     if(gameStatus==="Not Started"){
       setGameStatus("Started")
+      itemsArray() 
     }
     else {
       setMoves(0)
@@ -69,23 +71,15 @@ function Game() {
       setScore(0)
       setClickable(true)
       itemsArray() 
+      setGameStatus("Started")
+      // clearInterval(intervalId)
     }
-    intervalId= setInterval(() => {
-      let currtime = time + 1
-      setTime(currtime)
-    }, 1000)
-    //  clearInterval(intervalId)
+    // if(gameStatus!=="Finished"){
+      intervalId= setInterval(() => {
+        setTime(time=>time+1)
+      }, 1000)
+    // }
   }
-  useEffect(() => {
-    if(gameStatus==="Started"){
-      // setInterval(() => {
-      //   let currtime = time + 1
-      //   setTime(currtime)
-      // }, 1000)
-      itemsArray()
-    }
-  }, [gameStatus])
-
   return (
     <>
       <h1>Memory Game</h1>
@@ -93,7 +87,7 @@ function Game() {
       <Card
        gameStatus ={gameStatus}
        clickable ={clickable} 
-       items={items} scoreArr={scoreArr} visibile={visibile} />
+       items={items} scoreArr={scoreArr} visibile={visibile}  time={time} moves={moves}/>
     </>
   )
 }
